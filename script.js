@@ -5,26 +5,35 @@ const containerDiv = document.querySelector('#container');
 for (let i = 0; i < 256; i++) {
     const newGrid = document.createElement('div');
     newGrid.classList.add('flex-square');
+    newGrid.style.width = '45px';
+    newGrid.style.height = '45px';
     containerDiv.append(newGrid);
 }
-
 
 function applyHoverEffect() {
     const squares = document.querySelectorAll('.flex-square');
     squares.forEach(square => {
         square.addEventListener('mouseover', () => {
-            square.style.backgroundColor = 'black';
+            square.style.backgroundColor = setColor();
         });
     });
 }
 
 applyHoverEffect();
 
+//set color function
+function setColor (){
+    const colorValue = document.querySelector('#colorPicker').value
+    return colorValue;
+}
+
+
 //clear grid button
 
 const clearButton = document.querySelector('#clearButton');
 
 clearButton.addEventListener('click', () => {
+    const squares = document.querySelectorAll('.flex-square');
     squares.forEach(square => {
         square.style.backgroundColor = 'white';
     });
@@ -44,7 +53,7 @@ setGridSize.addEventListener('click', () => {
     }
 
     containerDiv.innerHTML = '';
-    const squareSize = 960 / gridSize;
+    const squareSize = 720 / gridSize;
     const totalSquares = gridSize * gridSize;
 
     for (let i = 0; i < totalSquares; i++){

@@ -29,7 +29,7 @@
   padding: 0;
 }
 
-#clearButton, #getGridSize {
+#clearButton, #getGridSize, #randomColorButton, #eraserButton{
   padding: 10px 20px;
   background-color: #ff4d4d;
   color: white;
@@ -39,6 +39,12 @@
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+#randomColorButton.random-active,  #eraserButton.eraser-active{
+  background-color: #4caf50; /* green to show it's ON */
+  color: white;
+  border: 2px solid #333;
 }
 
 #clearButton:hover, #getGridSize:hover {

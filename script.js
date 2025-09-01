@@ -1,4 +1,8 @@
 const containerDiv = document.querySelector('#container');
+let isMouseDown = false;
+
+document.addEventListener('mousedown', () => isMouseDown = true);
+document.addEventListener('mouseup', () => isMouseDown = false);
 
 //default 16x16 grid
 
@@ -10,12 +14,32 @@ for (let i = 0; i < 256; i++) {
     containerDiv.append(newGrid);
 }
 
+//addeventlisteners and check what mode is active
+
 function applyHoverEffect() {
     const squares = document.querySelectorAll('.flex-square');
+
     squares.forEach(square => {
         square.addEventListener('mouseover', () => {
-            square.style.backgroundColor = setColor();
+            if (eraserMode && isMouseDown) {
+                square.style.backgroundColor = 'white';
+            }
+
+            else if (randomColorMode) {
+                const [r, g, b] = randomColor();
+                square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            } 
+
+            else {
+                square.style.backgroundColor = setColor();
+            }
         });
+
+        square.addEventListener('click', () => {
+            if (eraserMode) {
+                square.style.backgroundColor = 'white';
+            }
+        })
     });
 }
 
@@ -39,7 +63,7 @@ clearButton.addEventListener('click', () => {
     });
 });
 
-//Choose grid size and update grid accordingly
+//Choose grid size and update grid size
 
 const setGridSize = document.querySelector('#getGridSize');
 
@@ -65,4 +89,29 @@ setGridSize.addEventListener('click', () => {
     }
 
     applyHoverEffect();
+})
+
+//Random Color
+function randomColor () {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return [r, g, b];
+}
+
+const randomColorButton = document.querySelector('#randomColorButton');
+let randomColorMode = false;
+
+randomColorButton.addEventListener('click', () => {
+  randomColorMode = !randomColorMode;
+  randomColorButton.classList.toggle('random-active');
+});
+
+//Eraser Button
+const eraserButton = document.querySelector('#eraserButton');
+let eraserMode = false;
+
+eraserButton.addEventListener('click', () => {
+    eraserMode = !eraserMode
+    eraserButton.classList.toggle('eraser-active');
 })

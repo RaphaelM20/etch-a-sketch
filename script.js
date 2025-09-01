@@ -55,6 +55,13 @@ function applyHoverEffect() {
             if (eraserMode) {
                 square.style.backgroundColor = 'white';
             }
+            else if (randomColorMode) {
+                const [r, g, b] = randomColor();
+                square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            }
+            else if (colorModeActive) {
+                square.style.backgroundColor = setColor();
+            }
         });
     });
 }

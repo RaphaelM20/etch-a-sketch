@@ -17,6 +17,7 @@ html, body {
   flex-wrap: wrap;
   padding: 10px;
   box-sizing: border-box;
+  margin-left: -250px;
 }
 
 .title {

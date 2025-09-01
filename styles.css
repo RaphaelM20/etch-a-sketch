@@ -1,36 +1,44 @@
-#container {
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden; /* prevent scrollbars */
   display: flex;
-  flex-wrap: wrap;             
-  width: 720px;
-  height: 720px;
-  border: 2px solid black;
-  margin: 0 auto;
+  flex-direction: column;
+  background-color: lightgray;
 }
 
-.flex-square {
-  border: 1px solid #ddd;
-  background-color: white;
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 10px;
   box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  font-size: 48px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #333;
 }
 
 .controls {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
+  gap: 15px;
 }
 
-#colorPicker {
-  width: 40px;
-  height: 40px;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-#clearButton, #getGridSize, #randomColorButton, #eraserButton{
-  padding: 10px 20px;
+.controls button {
+  width: 200px;              /* consistent width */
+  padding: 10px 0;           /* vertical padding only */
   background-color: #ff4d4d;
   color: white;
   border: none;
@@ -41,12 +49,124 @@
   transition: background-color 0.3s ease;
 }
 
-#randomColorButton.random-active,  #eraserButton.eraser-active{
-  background-color: #4caf50; /* green to show it's ON */
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  width: min(80vmin, 90vw);   /* Square container, responsive */
+  height: min(80vmin, 90vw);
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.flex-square {
+  background-color: white;
+  box-sizing: border-box;
+}
+
+#colorPicker {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+#randomColorButton.random-active,  
+#eraserButton.eraser-active, 
+#colorModeButton.color-active{
+  background-color: #4caf50; 
   color: white;
   border: 2px solid #333;
 }
 
-#clearButton:hover, #getGridSize:hover {
-  background-color: #e60000;
+.controls label {
+  font-weight: bold;
+}
+
+#gridSizeRange {
+  width: 200px;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 5px;
+  background: #ccc;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+/* Track color when not active */
+#gridSizeRange::-webkit-slider-runnable-track {
+  height: 8px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+/* Thumb (draggable part) */
+#gridSizeRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ff4d4d; /* Same as button */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border: none;
+  margin-top: -6px; /* aligns thumb with track */
+}
+
+/* On hover: darker red thumb */
+
+/* Firefox support */
+#gridSizeRange::-moz-range-track {
+  height: 8px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+#gridSizeRange::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #ff4d4d;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.github-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-left: 5px;
+  fill: #000;
+  transition: transform 0.2s ease;
+}
+
+.github-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .main-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .controls button,
+  #gridSizeRange {
+    width: 90vw;
+    max-width: 300px;
+  }
+}
+
+.footer {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
 }

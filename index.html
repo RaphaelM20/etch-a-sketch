@@ -8,20 +8,32 @@
     <link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="controls">
-        <input type="color" id="colorPicker" value="#000000">
-        <label for="colorPicker">Choose Color</label>
+    <h1 class="title">Etch-A-Sketch</h1>
+    <div class="main-wrapper">
+        <div class="controls">
+            <input type="color" id="colorPicker" value="#000000">
+            
+            <button id="colorModeButton" class="color-active">Color Mode</button>
+            <button id="randomColorButton">Random Colors</button>
+            <button id="eraserButton">Eraser</button>
+            <button id="clearButton">Clear</button>
+            <label for="gridSizeRange">
+                Grid Size: <span id="gridSizeValue">16</span> x <span id="gridSizeValue2">16</span>
+            </label>
+            <input type="range" id="gridSizeRange" min="1" max="64" value="16">
+        </div>
 
-        <button id="getGridSize">Set Grid Size</button>
-        <button id="clearButton">Clear</button>
-        <button id="randomColorButton">Random Colors</button>
-        <button id="eraserButton">Eraser</button>
+        <div id="container">
+
+        </div>
     </div>
-
-    <div id="container">
-
-    </div>
-
-    
+    <footer class="footer">
+        <p>
+            Copyright &copy; 2025 RaphaelM_20 &nbsp;
+            <a href="https://github.com/RaphaelM20" target="_blank" aria-label="GitHub Profile">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub Logo" class="github-icon">
+            </a>
+        </p>
+    </footer>
 </body>
 </html>
